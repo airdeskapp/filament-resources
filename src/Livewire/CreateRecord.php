@@ -2,20 +2,22 @@
 
 namespace Airdesk\FilamentResources\Livewire;
 
+use Filament\Actions\Action;
 use Filament\Forms\Form;
+use Filament\Pages\Concerns\InteractsWithFormActions;
 use Filament\Support\Exceptions\Halt;
 use Illuminate\Database\Eloquent\Model;
 
 class CreateRecord extends Page
 {
+    use InteractsWithFormActions;
+
     public ?Model $record = null;
 
     public ?array $data = [];
 
     public function mount()
     {
-        parent::mount();
-
         $this->fillForm();
     }
 
@@ -37,6 +39,18 @@ class CreateRecord extends Page
     {
         return [
             $this->getCreateFormAction(),
+        ];
+    }
+
+    public function getForms(): array
+    {
+        return [
+            'form' => $this->form(static::getResource()::form(
+                $this->makeForm()
+                    ->operation('create')
+                    ->model($this->getModel())
+                    ->statePath($this->getFormStatePath()),
+            )),
         ];
     }
 
@@ -67,8 +81,16 @@ class CreateRecord extends Page
         return $form;
     }
 
+    public function getCreateFormAction(): Action
+    {
+        return Action::make('create')
+            ->label(__('filament-panels::resources/pages/create-record.form.actions.create.label'))
+            ->submit('create')
+            ->keyBindings(['mod+s']);
+    }
+
     public function render()
     {
-        return view('livewire.create-record');
+        return view('filament-resources::livewire.create-record');
     }
 }

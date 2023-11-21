@@ -2,7 +2,6 @@
 
 namespace Airdesk\FilamentResources\Livewire;
 
-use Airdesk\FilamentResources\Concerns\InteractsWithHooks;
 use Filament\Actions\Action;
 use Filament\Forms\Form;
 use Filament\Pages\Concerns\InteractsWithFormActions;
@@ -11,8 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class EditRecord extends Page
 {
-    use InteractsWithFormActions,
-        InteractsWithHooks;
+    use InteractsWithFormActions;
 
     public ?Model $record = null;
 
@@ -20,9 +18,7 @@ class EditRecord extends Page
 
     public function mount(): void
     {
-        parent::mount();
-
-        $this->fillForm($this->record->toArray());
+        $this->form->fill($this->record->toArray());
     }
 
     public function form(Form $form): Form
@@ -40,6 +36,11 @@ class EditRecord extends Page
                     ->statePath($this->getFormStatePath()),
             )),
         ];
+    }
+
+    public function getFormStatePath(): ?string
+    {
+        return 'data';
     }
 
     public function submit(): void
@@ -69,6 +70,6 @@ class EditRecord extends Page
 
     public function render()
     {
-        return view('livewire.edit-record');
+        return view('filament-resources::livewire.edit-record');
     }
 }

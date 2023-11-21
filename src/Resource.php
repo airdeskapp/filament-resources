@@ -2,8 +2,8 @@
 
 namespace Airdesk\FilamentResources;
 
+use Filament\Forms\Form;
 use Filament\Tables\Table;
-use Livewire\Form;
 
 class Resource
 {

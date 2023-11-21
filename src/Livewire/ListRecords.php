@@ -24,6 +24,6 @@ class ListRecords extends Page implements HasTable
 
     public function render()
     {
-        return view('livewire.list-records');
+        return view('filament-resources::livewire.list-records');
     }
 }
