@@ -30,4 +30,9 @@ class Page extends Component implements HasActions, HasForms
     {
         return static::getResource()::getModel();
     }
+
+    public function getHeaderActions(): array
+    {
+        return [];
+    }
 }
