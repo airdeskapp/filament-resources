@@ -18,7 +18,7 @@ class EditRecord extends Page
 
     public ?array $data = [];
 
-    public function mount()
+    public function mount(): void
     {
         parent::mount();
 
