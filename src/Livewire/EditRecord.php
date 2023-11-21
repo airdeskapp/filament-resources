@@ -26,6 +26,13 @@ class EditRecord extends Page
         return $form;
     }
 
+    protected function getFormActions(): array
+    {
+        return [
+            $this->getSaveFormAction(),
+        ];
+    }
+
     public function getForms(): array
     {
         return [
@@ -54,16 +61,16 @@ class EditRecord extends Page
 
             $this->record->update($data);
 
-            $this->callHook('afterCreate');
+            $this->callHook('afterUpdate');
         } catch (Halt $exception) {
             return;
         }
     }
 
-    public function getSubmitFormAction(): Action
+    public function getSaveFormAction(): Action
     {
         return Action::make('submit')
-            ->label(__('filament-panels::resources/pages/edit-record.form.actions.submit.label'))
+            ->label(__('filament-panels::resources/pages/edit-record.form.actions.save.label'))
             ->submit('submit')
             ->keyBindings(['mod+s']);
     }
