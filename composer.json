@@ -1,0 +1,42 @@
+{
+    "name": "airdesk/filament-resources",
+    "description": "Filament resources package",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Airdesk\\FilamentResources\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Sebastiaan Kloos",
+            "email": "sebastiaan@kloos.me"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "filament/filament": "^3.0"
+    },
+    "require-dev": {
+        "nunomaduro/larastan": "^2.0",
+        "pestphp/pest": "^2.24",
+        "orchestra/testbench": "^8.15",
+        "laravel/pint": "^1.13"
+    },
+    "scripts": {
+        "phpstan": "./vendor/bin/phpstan analyse --memory-limit=2G",
+        "pint": "./vendor/bin/pint"
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Airdesk\\FilamentResources\\FilamentResourcesServiceProvider"
+            ]
+        }
+    }
+}
