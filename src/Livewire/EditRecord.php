@@ -2,6 +2,7 @@
 
 namespace Airdesk\FilamentResources\Livewire;
 
+use Airdesk\FilamentResources\Concerns\InteractsWithRecord;
 use Filament\Actions\Action;
 use Filament\Forms\Form;
 use Filament\Pages\Concerns\InteractsWithFormActions;
@@ -10,14 +11,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class EditRecord extends Page
 {
-    use InteractsWithFormActions;
-
-    public ?Model $record = null;
+    use InteractsWithFormActions, InteractsWithRecord;
 
     public ?array $data = [];
 
-    public function mount(): void
+    public function mount(int | string $record): void
     {
+        $this->record = $this->resolveRecord($record);
+
         $this->form->fill($this->record->toArray());
     }
 

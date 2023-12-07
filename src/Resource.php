@@ -9,6 +9,8 @@ class Resource
 {
     protected static ?string $model = null;
 
+    public static string $recordRouteKeyName = 'id';
+
     public static function table(Table $table): Table
     {
         return $table;
