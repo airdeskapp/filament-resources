@@ -19,7 +19,9 @@ class EditRecord extends Page
     {
         $this->record = $this->resolveRecord($record);
 
-        $this->form->fill($this->record->toArray());
+        $data = $this->getRecord()->attributesToArray();
+
+        $this->form->fill($data);
     }
 
     public function form(Form $form): Form
@@ -60,7 +62,7 @@ class EditRecord extends Page
 
             $this->callHook('afterValidate');
 
-            $this->record->update($data);
+            $this->getRecord()->update($data);
 
             $this->callHook('afterUpdate');
         } catch (Halt $exception) {

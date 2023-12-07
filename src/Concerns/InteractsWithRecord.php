@@ -26,4 +26,9 @@ trait InteractsWithRecord
 
         return $record;
     }
+
+    public function getRecord(): Model
+    {
+        return $this->record;
+    }
 }
