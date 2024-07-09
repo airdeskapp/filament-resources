@@ -10,7 +10,7 @@ use Livewire\Attributes\Locked;
 trait InteractsWithRecord
 {
     #[Locked]
-    protected Model | int | string | null $record = null;
+    public Model | int | string | null $record = null;
 
     protected function resolveRecord(int | string $key): Model
     {
