@@ -63,7 +63,7 @@ class CreateRecord extends Page
 
             $this->callHook('afterValidate');
 
-            $record = $this->getModel()->create($data);
+            $record = $this->getModel()::create($data);
 
             $this->callHook('afterCreate');
         } catch (Halt $exception) {
