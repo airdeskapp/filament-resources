@@ -42,7 +42,7 @@ class EditRecord extends Page
             'form' => $this->form(static::getResource()::form(
                 $this->makeForm()
                     ->operation('edit')
-                    ->model($this->getModel())
+                    ->model($this->getRecord())
                     ->statePath($this->getFormStatePath()),
             )),
         ];
@@ -63,6 +63,8 @@ class EditRecord extends Page
             $this->callHook('afterValidate');
 
             $this->getRecord()->update($data);
+
+            $this->form->saveRelationships();
 
             $this->callHook('afterUpdate');
         } catch (Halt $exception) {
