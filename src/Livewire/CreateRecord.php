@@ -65,6 +65,8 @@ class CreateRecord extends Page
 
             $record = $this->getModel()::create($data);
 
+            $this->form->model($record)->saveRelationships();
+
             $this->callHook('afterCreate');
         } catch (Halt $exception) {
             return;
